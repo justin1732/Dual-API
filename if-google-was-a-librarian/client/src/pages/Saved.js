@@ -2,7 +2,6 @@ import React from "react";
 import SavedHeader from "../components/SavedHeader"
 import Results from "../components/Results"
 import API from "../utils/API"
-// import AResults from "../components/AResults";
 
 class Saved extends React.Component {
     state = {
@@ -11,7 +10,6 @@ class Saved extends React.Component {
     }
     componentDidMount() {
        this.getSaved()
-    //    this.getASaved()
     }
     getSaved = () => {
         API.getAllBooks()
@@ -19,15 +17,6 @@ class Saved extends React.Component {
                this.setState({saved: res.data})
            })
     }
-
-    // getASaved = () =>{
-    //     API.getAllAnimes()
-    //     .then(res => {
-    //         this.setState({saved: res.data})
-    //     }
-    //         )
-    // }
-
     render() {
         return (
             <div>
@@ -39,12 +28,9 @@ class Saved extends React.Component {
                     buttonColor = {this.state.btnColor}
                     getSaved = {this.getSaved}
                 />
-
             </div>
         )
     }
-
 }
-
 
 export default Saved

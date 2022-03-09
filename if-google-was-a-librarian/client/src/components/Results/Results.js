@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import "./AResults.css"
+import "./Results.css"
 import API from "../../utils/API"
 
-
-class AResults extends Component {
+class Results extends Component {
     handleSave = (id) => {
-        API.saveAnime(id).then(res => console.log(res.status))
+        API.saveBook(id).then(res => console.log(res.data))
     }
     handleDelete = (id) => {
-        API.deleteAnime(id).then(() => this.props.getAnime())
+        API.deleteBook(id).then(() => this.props.getSaved())
     }
     handleButton = (id) => {
         if (this.props.buttonText === "Save") {
@@ -23,24 +22,26 @@ class AResults extends Component {
             <div className="results">
                 <h1>{this.props.status}</h1>
 
-                {this.props.animes.map(anime => (
-                    <div className="result-box" key={anime.type}>
+                {this.props.books.map(book => (
+                    <div className="result-box" key={book.link}>
                          <div className="row">
                             <div className="col-md-8">
-                                <p className="title">{anime.title}</p><br />
-                                <p className="type">Type: {anime.type}</p>
+                                <p className="title">{book.title}</p><br />
+                                <p className="authors">Written By: {book.authors.map(author => (<span key={author}>{author} </span>))}</p>
                             </div>
                             <div className="col-md-4">
                                 <div className="buttonDiv">
-                                <button className="save btn" onClick={() => this.handleButton(anime._id)} style={this.props.buttonColor}>{this.props.buttonText}</button>
+                                <button className="view"><a className="view btn" href={book.link} target="_blank" rel="noopener noreferrer">View</a></button>
+                                    <button className="save btn" onClick={() => this.handleButton(book._id)} style={this.props.buttonColor}>{this.props.buttonText}</button>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-4">
+                                <img src={book.image} alt="book cover" />
                             </div>
                             <div className="col-md-10">
-                                <p className="description">{anime.description}</p>
+                                <p className="description">{book.description}</p>
                             </div>
                         </div>
                         <br />
@@ -52,4 +53,4 @@ class AResults extends Component {
     }
 };
 
-export default AResults;
+export default Results;

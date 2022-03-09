@@ -7,13 +7,10 @@ class Navbar extends Component {
         return (
 
             <nav className="navbar fixed-top">
-                <span className="navbar-brand mb-0 h1">📖 Anime and Books Search</span>
-                <Link to="/">Home</Link>
+                <span className="navbar-brand mb-0 h1">📖 Google Books Search</span>
                 <div>
-                    <Link to="/books">Books</Link>
-                    <Link to ="/anime">Anime</Link>
+                    <Link to="/">Search</Link>
                     <Link to="/saved">Saved</Link>
-                    <Link to="/asaved">ASaved</Link>
                 </div>
             </nav>
 
